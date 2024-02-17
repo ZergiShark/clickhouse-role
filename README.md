@@ -1,23 +1,25 @@
-Role Name
-Роль для установки clickhouse.
+# Роль для установки ClickHouse
 
-Компоненты:
-clickhouse-client
-clickhouse-server
-clickhouse-common-static
+## Описание
+Роль предназначена для установки и настройки ClickHouse - колоночной СУБД с открытым исходным кодом. 
+Она устанавливает необходимые компоненты, создает базу данных, таблицу для логов, пользователя для записи в БД и конфигурирует сервер для работы внешних подключений.
 
-Создаётся таблица для логов
-Создаётся пользователь для записи в БД
-Конфигурируется clickhouse-server для работы внешних подключений
-Requirements
-Role Variables
-Переменные для установки кредов default/main.yml:
+## Компоненты
+- clickhouse-client
+- clickhouse-server
+- clickhouse-common-static
 
+## Требования
+- ansible
+- доступ к серверу для установки ClickHouse
+- права администратора на сервере
+
+## Переменные
+### default/main.yml
 clickhouse_user: user
 clickhouse_password: password
-Переменные для установки необходимых пакетов и конфигурационных файлов clickhouse vars/main.yml
 
-```
+### vars/main.yml
 clickhouse_version: "22.10.4.23"
 clickhouse_packages:
   - clickhouse-client
@@ -25,15 +27,19 @@ clickhouse_packages:
   - clickhouse-common-static
 clickhouse_config_path: /etc/clickhouse-server/config.xml
 clickhouse_users_path: /etc/clickhouse-server/users.xml
-```
-Dependencies
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
-Example Playbook
-hosts: clickhouse
-roles:
-  - role: clickhouse-role
-License
+
+## Зависимости
+Отсутствуют
+
+## Пример использования
+- hosts: clickhouse
+  roles:
+    - role: clickhouse-role
+
+
+## Лицензия
 MIT
 
-Author Information
+## Информация об авторе
+Автор: [ZergiShark]
